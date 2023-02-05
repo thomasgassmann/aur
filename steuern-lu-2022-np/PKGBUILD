@@ -1,3 +1,5 @@
+# Maintainer: Thomas Gassmann <thomas@gassmann.dev>
+
 pkgname=steuern-lu-np-2022
 pkgver=2022.1
 pkgrel=1
