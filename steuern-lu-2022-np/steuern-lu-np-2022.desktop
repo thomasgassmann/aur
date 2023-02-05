@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Steuern Luzern 2022 nP
+Exec=INSTALL4J_JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre /bin/sh -c /usr/bin/easytax-ag-2022
+Categories=Office;
