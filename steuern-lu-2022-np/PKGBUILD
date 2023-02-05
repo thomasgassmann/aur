@@ -1,6 +1,5 @@
-yyyy=2022
-pkgname=steuern-lu-np-${yyyy}
-pkgver=1.0
+pkgname=steuern-lu-np-2022
+pkgver=2022.1
 pkgrel=1
 pkgdesc="Lucerne tax declaration software for natural persons 2022"
 arch=(any)
@@ -13,13 +12,20 @@ source=(
 )
 sha256sums=(
   '00304a32ef9323397f9d6f19ef6f3368c15f4667d3867e213e574ba8a9c03ff0'
-  'c6d05a44d99f59c7d7d5fc0998903da3296b71442ac529b009c41db618b81a9d'
+  '3da6addee7559206d9428d162a8faa14864cf252d1ca9287b4cae9c6e442f96f'
 )
 
-package() {
-  mkdir -p "$pkgdir"/usr/share/applications
-  cp *.desktop "$pkgdir"/usr/share/applications/
-
+prepare() {
   chmod +x "$srcdir"/steuern.lu.2022nP.sh
-  "$srcdir"/steuern.lu.2022nP.sh -q
+	"$srcdir"/steuern.lu.2022nP.sh -q \
+		-Dall=true \
+		-V'addToPath$Integer'=1 \
+		-dir "$srcdir/steuern-lu-np-2022"
+}
+
+package() {
+  mkdir -p "$pkgdir"/opt/steuern-lu-np-2022
+  cp -R "$srcdir"/steuern-lu-np-2022/* "$pkgdir"/opt/steuern-lu-np-2022
+  install -Dm644 "$srcdir"/$pkgname.desktop \
+    "$pkgdir"/usr/share/applications/$pkgname.desktop
 }
